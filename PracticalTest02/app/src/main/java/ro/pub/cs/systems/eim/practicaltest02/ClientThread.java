@@ -39,13 +39,13 @@ public class ClientThread extends Thread {
             BufferedReader bufferedReader = Utilities.getReader(socket);
             PrintWriter printWriter = Utilities.getWriter(socket);
             if (bufferedReader != null && printWriter != null) {
-                String weatherInformation;
-                while ((weatherInformation = bufferedReader.readLine()) != null) {
-                    final String finalizedWeatherInformation = weatherInformation;
+                String status;
+                while ((status = bufferedReader.readLine()) != null) {
+                    final String statusInfo = status;
                     clientText.post(new Runnable() {
                         @Override
                         public void run() {
-                            clientText.append(finalizedWeatherInformation + "\n");
+                            clientText.append(statusInfo + "\n");
                         }
                     });
                 }
@@ -53,7 +53,7 @@ public class ClientThread extends Thread {
                 Log.e("ClientThread", "[CLIENT THREAD] BufferedReader / PrintWriter are null!");
             }
             socket.close();
-        } catch (IOException ioException) {
+        } catch (Exception ioException) {
             Log.e("ClientThread", "[CLIENT THREAD] An exception has occurred: " + ioException.getMessage());
             ioException.printStackTrace();
         }

@@ -59,8 +59,8 @@ public class ServerThread extends Thread {
                 Log.i("ServerThread", "[SERVER] Waiting for a connection...");
                 Socket socket = serverSocket.accept();
                 Log.i("ServerThread", "[SERVER] A connection request was received from " + socket.getInetAddress() + ":" + socket.getLocalPort());
-//                CommunicationThread communicationThread = new CommunicationThread(this, socket);
-//                communicationThread.start();
+                CommunicationThread communicationThread = new CommunicationThread(this, socket);
+                communicationThread.start();
             }
         } catch (Exception clientProtocolException) {
             Log.e("ServerThread", "An exception has occurred: " + clientProtocolException.getMessage());

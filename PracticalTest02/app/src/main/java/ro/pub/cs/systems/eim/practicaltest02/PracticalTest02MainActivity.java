@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.net.Socket;
 import java.util.HashMap;
 
 public class PracticalTest02MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -44,6 +45,8 @@ public class PracticalTest02MainActivity extends AppCompatActivity implements Vi
         }
         if(id == R.id.client_button) {
 
+            ClientThread clientThread = new ClientThread(serverIpEdit.getText().toString(),Integer.parseInt(serverPortEdit.getText().toString()),clientText);
+            clientThread.run();
         }
     }
 
